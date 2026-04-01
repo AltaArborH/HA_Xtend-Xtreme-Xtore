@@ -4,7 +4,7 @@ Home Assistant thingies for the Xtend-Xtreme-Xtore
 In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, based on the REST connection described by Dennis Schoutsen ( https://github.com/DSchoutsen/HA_connection_Xtend/ ).
 
 
-Installation
+# Installation
 
 Copy the code from the xtend_xtreme_schema_card.yaml into an empty card.
 Dependencies

@@ -17,14 +17,16 @@ Conformyou have the following HACS repositories installed:
 
 ### Extra sensors
 To retreive the correct data from the Xtend and Xtore, implement the following extra codes into the file sensor_intergas_Xtend.yaml:
+```
 
   ##Add the four codes in the line "resource" when missing
   resource: http://10.20.30.1/api/stats/values?fields=...............,610b,61eb,61ba,6117
 
+```
 and in the file template_intergas_Xtend.yaml, adn the following sensor-descriptions:
-# ══════════════════════════════════════════════════════════════
+# ════════════════════════════════════
 # DOMESTIC HOT WATER  (Xtore)
-# ══════════════════════════════════════════════════════════════
+# ════════════════════════════════════
 
 - sensor:
     - name: "Xtore current temperature"

@@ -6,4 +6,4 @@ entities:
   - entity: sensor.xtend_dhw_setpoint_xtore
   - entity: sensor.xtend_dhw_tank_volume_xtore
 title: Xtore status
-state_color: false
+state_color: true

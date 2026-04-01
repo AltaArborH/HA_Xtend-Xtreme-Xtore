@@ -3,6 +3,15 @@ Home Assistant thingies for the Xtend-Xtreme-Xtore
 
 In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, based on the REST connection described by Dennis Schoutsen ( https://github.com/DSchoutsen/HA_connection_Xtend/ ).
 
+I've created two cards, which can used seperately:
+
+**Xtore-card-text**
+![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-text.png)
+
+**Xtore-card-battery**
+![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png)
+
+
 
 ## Installation
 
@@ -82,6 +91,7 @@ And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descript
 
 ```
 
+## Cards
 When the sensors provide data, create new cards with the following code:
 
 **Xtore-card-text-v0.1.yaml**

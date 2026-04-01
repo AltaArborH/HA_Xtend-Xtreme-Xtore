@@ -31,7 +31,7 @@ Conformyou have the following HACS repositories installed:
 
 ### Extra sensors
 To retreive the correct data from the Xtend and Xtore, implement the following extra codes into the file *sensor_intergas_Xtend.yaml*:
-```
+```yaml
   ....
   resource: http://10.20.30.1/api/stats/values?fields=<...existing values...>,610b,61eb,61ba,6117
   ....
@@ -39,7 +39,7 @@ To retreive the correct data from the Xtend and Xtore, implement the following e
 ```
 And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descriptions:
 
-```
+```yaml
 
 # ════════════════════════════════════
 # DOMESTIC HOT WATER  (Xtore)
@@ -100,7 +100,8 @@ And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descript
 When the sensors provide data, create new cards with the following code:
 
 **Xtore-card-text-v0.1.yaml**
-```
+
+```yaml
 type: entities
 entities:
   - entity: sensor.xtend_dhw_status_xtore
@@ -114,7 +115,8 @@ state_color: true
 
 For the more graphical view, use the following yaml-code:
 **Xtore-card-battery-v0.1.yaml**
-```
+
+```yaml
 type: custom:stack-in-card
 title: Xtore status
 card_mod:

@@ -13,7 +13,7 @@ Make sure you have the following
 Conformyou have the following HACS repositories installed:
 - Andy sensor card : https://github.com/maglerod/andy-sensor-card
 - Stack in Card: https://github.com/custom-cards/stack-in-card
-- 
+- Mush Title card: https://github.com/piitaya/lovelace-mushroom
 
 ### Extra sensors
 To retreive the correct data from the Xtend and Xtore, implement the following extra codes into the file *sensor_intergas_Xtend.yaml*:

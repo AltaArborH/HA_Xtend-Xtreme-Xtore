@@ -6,10 +6,15 @@ In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, ba
 I've created two cards, which can used seperately:
 
 **Xtore-card-text**
+
 ![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-text.png)
 
+
 **Xtore-card-battery**
+
 ![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png)
+
+The percentage is calculated from the current temperature and the setpoint-temperature. Maybe it needs some tweaking.
 
 
 

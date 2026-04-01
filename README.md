@@ -3,7 +3,7 @@ Home Assistant thingies for the Xtend-Xtreme-Xtore
 
 In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, based on the REST connection described by Dennis Schoutsen ( https://github.com/DSchoutsen/HA_connection_Xtend/ ).
 
-###**-- this code and card probably wil change with some improvements ! --**
+**-- this code and card probably will change with some improvements ! --**
 
 I've created two cards, which can used seperately:
 
@@ -253,3 +253,6 @@ cards:
                 }
 
 ``` 
+
+
+If you have suggestions for improvements, please let me now!

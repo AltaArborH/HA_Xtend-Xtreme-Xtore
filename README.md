@@ -3,7 +3,7 @@ Home Assistant thingies for the Xtend-Xtreme-Xtore
 
 In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, based on the REST connection described by Dennis Schoutsen ( https://github.com/DSchoutsen/HA_connection_Xtend/ ).
 
-###**-- this code and card probably wil change with some improvements ! --**###
+###**-- this code and card probably wil change with some improvements ! --**
 
 I've created two cards, which can used seperately:
 
@@ -22,11 +22,11 @@ The percentage is calculated from the current temperature and the setpoint-tempe
 
 ## Installation
 
-Make sure you have the following
+Follow the next steps to install the cards.
 
 ### HACS Repositories
 
-Verify myou have the following HACS repositories installed:
+Verify you have the following HACS repositories installed:
 - Andy sensor card : https://github.com/maglerod/andy-sensor-card
 - Stack in Card: https://github.com/custom-cards/stack-in-card
 - Mush Title card: https://github.com/piitaya/lovelace-mushroom

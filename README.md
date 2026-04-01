@@ -19,12 +19,14 @@ Conformyou have the following HACS repositories installed:
 To retreive the correct data from the Xtend and Xtore, implement the following extra codes into the file sensor_intergas_Xtend.yaml:
 ```
   ....
-  resource: http://10.20.30.1/api/stats/values?fields=<existing values>**,610b,61eb,61ba,6117**
+  resource: http://10.20.30.1/api/stats/values?fields=<...existing values...>,610b,61eb,61ba,6117
   ....
 
 ```
 and in the file template_intergas_Xtend.yaml, adn the following sensor-descriptions:
-'''
+
+```
+
 # ════════════════════════════════════
 # DOMESTIC HOT WATER  (Xtore)
 # ════════════════════════════════════
@@ -78,7 +80,7 @@ and in the file template_intergas_Xtend.yaml, adn the following sensor-descripti
         {% else %}Unknown ({{ v }}){% endif %}
       icon: mdi:water-boiler-auto
 
-'''
+```
 
 
 

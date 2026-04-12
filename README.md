@@ -93,6 +93,8 @@ And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descript
         {% if v == 0 %}Standby
         {% elif v == 1 %}Heating1
         {% elif v == 3 %}Heating
+        {% elif v == 7 %}Running low_to-check
+        {% elif v == 9 %}Legionella-run_to-check
         {% else %}Unknown ({{ v }}){% endif %}
       icon: mdi:water-boiler-auto
 

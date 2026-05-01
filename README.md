@@ -5,7 +5,7 @@ In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, ba
 
 **-- this code and card probably will change with some improvements ! --**
 
-I've created two cards, which can be used seperately:
+I've created two cards (and made an updated card from the repository from Dschoutsen), which can be used seperately:
 
 **Xtore-card-text**
 
@@ -17,6 +17,13 @@ I've created two cards, which can be used seperately:
 ![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png)
 
 The percentage is calculated from the current temperature and the setpoint-temperature. Maybe it needs some tweaking.
+
+**Xtend-card-CoP**
+
+![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtend-card-CoP%20Overall-Current.png)
+
+This card is in two versions (and more can be easily created) with the current CoP òr overall CoP.
+
 
 
 ## Installation
@@ -357,6 +364,156 @@ cards:
 
 
 ``` 
+
+
+For the overall CoP (calculated from all historical data), use the following yaml-code:
+**Xtend-card-overall-cop-v0.9.yaml**
+
+```yaml
+type: vertical-stack
+title: Overall CoP
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Overall power
+        secondary: "{{ states(\"sensor.xtend_electricenergyheating\") }} kWh"
+        icon: mdi:flash
+        icon_color: orange
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+      - type: custom:mushroom-template-card
+        primary: Overall thermal
+        secondary: "{{ states(\"sensor.xtend_thermalenergyheating\") }} kWh"
+        icon: mdi:fire
+        icon_color: red
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+  - type: gauge
+    name: Overall CoP
+    entity: sensor.xtend_cop_total
+    min: 0
+    max: 12
+    severity:
+      green: 4
+      yellow: 2
+      red: 0
+    needle: true
+    card_mod:
+      style: |
+        ha-card {
+          margin-top: -20px;
+          border-width: 0px !important;
+          background: transparent !important;
+        }
+```
+
+
+For the current CoP (based on the current energy in- and output), use the following yaml-code:
+**Xtend-card-current-cop-v0.9.yaml**
+
+```yaml
+type: vertical-stack
+title: Current CoP
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Overall power
+        secondary: "{{ states(\"sensor.xtend_currentpowerelectric\") }} kWh"
+        icon: mdi:flash
+        icon_color: orange
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+      - type: custom:mushroom-template-card
+        primary: Current thermal
+        secondary: "{{ states(\"sensor.xtend_currenthppowerthermal\") }} kWh"
+        icon: mdi:fire
+        icon_color: red
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+  - type: gauge
+    name: Current CoP
+    entity: sensor.xtend_currentcop
+    min: 0
+    max: 12
+    severity:
+      green: 4
+      yellow: 2
+      red: 0
+    needle: true
+    card_mod:
+      style: |
+        ha-card {
+          margin-top: -20px;
+          border-width: 0px !important;
+          background: transparent !important;
+        }
+```
+
+
+
+
 
 
 If you have suggestions for improvements, please let me now!

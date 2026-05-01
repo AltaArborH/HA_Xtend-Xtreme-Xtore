@@ -9,7 +9,7 @@ I've created two cards (and made an updated card from the repository from Dschou
 
 **Xtore-card-text**
 
-![..](<img width="400" alt="schema-card" src="https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-text.png" />)
+<img width="400" alt="schema-card" src="https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-text.png" />
 
 
 **Xtore-card-battery**

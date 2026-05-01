@@ -1,0 +1,28 @@
+type: entities
+title: Xtore status
+state_color: true
+show_header_toggle: false
+entities:
+  - entity: sensor.xtend_dhw_status_xtore
+  - entity: sensor.xtend_heatdemand_status
+    name: Xtend Status
+  - entity: sensor.xtend_dhw_availability_xtore
+  - entity: sensor.xtend_dhw_actual_temperature_xtore
+  - entity: sensor.xtend_dhw_setpoint_xtore
+  - entity: sensor.xtend_dhw_tank_volume_xtore
+card_mod:
+  style: >
+    /* Target the container of the rows */
+
+    #states > * {
+      margin-top: -5px;
+      margin-bottom: -5px;
+    }
+
+    /* Optional: reduce padding of the whole card content to make it even
+    tighter */
+
+    .card-content {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }

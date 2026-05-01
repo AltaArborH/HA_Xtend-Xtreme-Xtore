@@ -1,0 +1,66 @@
+type: vertical-stack
+title: Overall CoP
+cards:
+  - type: horizontal-stack
+    cards:
+      - type: custom:mushroom-template-card
+        primary: Overall power
+        secondary: "{{ states(\"sensor.xtend_electricenergyheating\") }} kWh"
+        icon: mdi:flash
+        icon_color: orange
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+      - type: custom:mushroom-template-card
+        primary: Overall thermal
+        secondary: "{{ states(\"sensor.xtend_thermalenergyheating\") }} kWh"
+        icon: mdi:fire
+        icon_color: red
+        layout: vertical
+        card_mod:
+          style:
+            mushroom-state-info$: |
+              .primary {
+                font-size: 12px !important;
+                opacity: 0.7;
+              }
+              .secondary {
+                font-size: 22px !important;
+                font-weight: bold !important;
+              }
+            .: |
+              ha-card {
+                background: transparent !important;
+                border-width: 0px !important;
+              }
+  - type: gauge
+    name: Overall CoP
+    entity: sensor.xtend_cop_total
+    min: 0
+    max: 12
+    severity:
+      green: 4
+      yellow: 2
+      red: 0
+    needle: true
+    card_mod:
+      style: |
+        ha-card {
+          margin-top: -20px;
+          border-width: 0px !important;
+          background: transparent !important;
+        }

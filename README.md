@@ -5,7 +5,7 @@ In this Repo, a walkthrough is created to add Xtore-values in Home Assistant, ba
 
 **-- this code and card probably will change with some improvements ! --**
 
-I've created two cards, which can used seperately:
+I've created two cards, which can be used seperately:
 
 **Xtore-card-text**
 
@@ -17,7 +17,6 @@ I've created two cards, which can used seperately:
 ![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png)
 
 The percentage is calculated from the current temperature and the setpoint-temperature. Maybe it needs some tweaking.
-
 
 
 ## Installation
@@ -32,14 +31,14 @@ Verify you have the following HACS repositories installed:
 - Mush Title card: https://github.com/piitaya/lovelace-mushroom
 
 ### Extra sensors
-To retreive the correct data from the Xtend and Xtore, implement the following extra codes into the file *sensor_intergas_Xtend.yaml*:
+To retrieve the correct data from the Xtend and Xtore, implement the following extra codes into the file *sensor_intergas_Xtend.yaml*:
 ```yaml
   ....
   resource: http://10.20.30.1/api/stats/values?fields=<...existing values...>,610b,61eb,61ba,6117
   ....
 
 ```
-And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descriptions:
+And in the file *template_intergas_Xtend.yaml*, add the following sensor-descriptions:
 
 ```yaml
 
@@ -99,26 +98,111 @@ And in the file *template_intergas_Xtend.yaml*, ad the following sensor-descript
       icon: mdi:water-boiler-auto
 
 ```
+and add in the template also two values ( 206 and 207).  The full code for thsi sensor is:
+
+```yaml
+    - name: xtend_heatdemand_status
+      unique_id: 18cc6f8b-1cd2-4ae7-97b3-1e06336ec3e0
+      state: >
+        {% set value = state_attr('sensor.Intergas_Xtend', 'stats')['7e51'] %}
+        {% if value == 0 %}
+          opentherm
+        {% elif value == 15 %}
+          boiler_ext
+        {% elif value == 37 %}
+          ch_rf
+        {% elif value == 126 %}
+          standby
+        {% elif value == 85 %}
+          sensortest
+        {% elif value == 86 %}
+          commissioning
+        {% elif value == 87 %}
+          crankheating
+        {% elif value == 170 %}
+          service
+        {% elif value == 204 %}
+          dhw
+        {% elif value == 51 %}
+          dhw_int
+        {% elif value == 240 %}
+          boiler_int
+        {% elif value == 153 %}
+          postrun_boiler
+        {% elif value == 102 %}
+          ch
+        {% elif value == 103 %}
+          ch_wait
+        {% elif value == 104 %}
+          defrosting
+        {% elif value == 255 %}
+          heatup
+        {% elif value == 24 %}
+          frost
+        {% elif value == 230 %}
+          starting_ch
+        {% elif value == 231 %}
+          postrun_ch
+        {% elif value == 127 %}
+          off
+        {% elif value == 205 %}
+          dhw_hreco
+        {% elif value == 206 %} #code 206 is not in the manual, but seems to be related to legionella runs, as it appears when a legionella run is active
+          Legionella-run
+        {% elif value == 207 %} #code 207 is not in the manual, but seems to be related to legionella runs, and shows "waiting for boiler heating" in the web-interface around the legionella run.
+          waiting_for_xtore_heating
+        {% elif value == 117 %}
+          starting_cooling
+        {% elif value == 118 %}
+          cooling
+        {% elif value == 119 %}
+          cooling_wait
+        {% elif value == 189 %}
+          postrun_cooling
+        {% else %}
+          {{ value }}
+        {% endif %}
+      icon: mdi:message-badge-outline
+````
 
 ## Cards
 When the sensors provide data, create new cards with the following code:
 
-**Xtore-card-text-v0.1.yaml**
+**Xtore-card-text-v0.2.yaml**
 
 ```yaml
 type: entities
+title: Xtore status
+state_color: true
+show_header_toggle: false
 entities:
   - entity: sensor.xtend_dhw_status_xtore
+  - entity: sensor.xtend_heatdemand_status
+    name: Xtend Status
   - entity: sensor.xtend_dhw_availability_xtore
   - entity: sensor.xtend_dhw_actual_temperature_xtore
   - entity: sensor.xtend_dhw_setpoint_xtore
   - entity: sensor.xtend_dhw_tank_volume_xtore
-title: Xtore status
-state_color: true
+card_mod:
+  style: >
+    /* Target the container of the rows */
+
+    #states > * {
+      margin-top: -5px;
+      margin-bottom: -5px;
+    }
+
+    /* Optional: reduce padding of the whole card content to make it even
+    tighter */
+
+    .card-content {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
 ```
 
 For the more graphical view, use the following yaml-code:
-**Xtore-card-battery-v0.1.yaml**
+**Xtore-card-battery-v0.2.yaml**
 
 ```yaml
 type: custom:stack-in-card
@@ -188,7 +272,7 @@ cards:
                 color: "#16a34a"
             style:
               top: 50%
-              left: 50%
+              left: 65%
               width: 100%
               transform: translate(-50%, -50%)
               "--ha-card-border-width": 0px;
@@ -197,7 +281,7 @@ cards:
             suffix: ""
             style:
               top: 50%
-              left: 51%
+              left: 66%
               font-size: 1.8rem
               font-weight: bold
               color: white
@@ -216,7 +300,21 @@ cards:
                   --ha-card-border-width: 0px !important;
                   background: transparent !important;
                   box-shadow: none !important;
+                  margin-top: -10px;
                 }
+          - type: custom:mushroom-template-card
+            primary: Xtend Status
+            secondary: "{{ states(\"sensor.xtend_heatdemand_status\") }}"
+            icon: mdi:water-boiler
+            icon_color: green
+            card_mod:
+              style: |
+                ha-card {
+                  --ha-card-border-width: 0px !important;
+                  background: transparent !important;
+                  box-shadow: none !important;
+                  margin-top: -14px;
+                }          
           - type: custom:mushroom-template-card
             primary: Availability
             secondary: "{{ states(\"sensor.xtend_dhw_availability_xtore\") }}%"
@@ -228,6 +326,7 @@ cards:
                   --ha-card-border-width: 0px !important;
                   background: transparent !important;
                   box-shadow: none !important;
+                  margin-top: -14px;
                 }
           - type: custom:mushroom-template-card
             primary: Temperature
@@ -240,6 +339,7 @@ cards:
                   --ha-card-border-width: 0px !important;
                   background: transparent !important;
                   box-shadow: none !important;
+                  margin-top: -14px;
                 }
           - type: custom:mushroom-template-card
             primary: Volume
@@ -252,7 +352,9 @@ cards:
                   --ha-card-border-width: 0px !important;
                   background: transparent !important;
                   box-shadow: none !important;
+                  margin-top: -14px;
                 }
+
 
 ``` 
 

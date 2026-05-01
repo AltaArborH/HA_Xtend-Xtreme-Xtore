@@ -14,14 +14,13 @@ I've created two cards (and made an updated card from the repository from Dschou
 
 **Xtore-card-battery**
 
-![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png)
+<img width="400" alt="schema-card" src="https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtore-card-battery.png" />
 
 The percentage is calculated from the current temperature and the setpoint-temperature. Maybe it needs some tweaking.
 
 **Xtend-card-CoP**
 
-![..](https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtend-card-CoP%20Overall-Current.png)
-
+<img width="400" alt="schema-card" src="https://github.com/AltaArborH/HA_Xtend-Xtreme-Xtore/blob/main/Xtend-card-CoP%20Overall-Current.png" />
 This card is in two versions (and more can be easily created) with the current CoP òr overall CoP.
 
 

@@ -52,3 +52,66 @@
         {% elif v == 9 %}Legionella-run_to-check
         {% else %}Unknown ({{ v }}){% endif %}
       icon: mdi:water-boiler-auto
+
+    - name: xtend_heatdemand_status
+      unique_id: xtend_heatdemand_status_7e51
+      state: >
+        {% set value = state_attr('sensor.Intergas_Xtend', 'stats')['7e51'] %}
+        {% if value == 0 %}
+          opentherm
+        {% elif value == 15 %}
+          boiler_ext
+        {% elif value == 37 %}
+          ch_rf
+        {% elif value == 126 %}
+          standby
+        {% elif value == 85 %}
+          sensortest
+        {% elif value == 86 %}
+          commissioning
+        {% elif value == 87 %}
+          crankheating
+        {% elif value == 170 %}
+          service
+        {% elif value == 204 %}
+          dhw
+        {% elif value == 51 %}
+          dhw_int
+        {% elif value == 240 %}
+          boiler_int
+        {% elif value == 153 %}
+          postrun_boiler
+        {% elif value == 102 %}
+          ch
+        {% elif value == 103 %}
+          ch_wait
+        {% elif value == 104 %}
+          defrosting
+        {% elif value == 255 %}
+          heatup
+        {% elif value == 24 %}
+          frost
+        {% elif value == 230 %}
+          starting_ch
+        {% elif value == 231 %}
+          postrun_ch
+        {% elif value == 127 %}
+          off
+        {% elif value == 205 %}
+          dhw_hreco
+        {% elif value == 206 %} #code 206 is not in the manual, but seems to be related to legionella runs, as it appears when a legionella run is active
+          Legionella-run
+        {% elif value == 207 %} #code 207 is not in the manual, but seems to be related to legionella runs, and shows "waiting for boiler heating" in the web-interface around the legionella run.
+          waiting_for_xtore_heating
+        {% elif value == 117 %}
+          starting_cooling
+        {% elif value == 118 %}
+          cooling
+        {% elif value == 119 %}
+          cooling_wait
+        {% elif value == 189 %}
+          postrun_cooling
+        {% else %}
+          {{ value }}  #value is projected instead of a name, for unknown values
+        {% endif %}
+      icon: mdi:message-badge-outline
